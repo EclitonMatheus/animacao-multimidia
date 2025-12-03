@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Multimídia – Animação</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Bibliotecas necessárias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi@2.0.28/build/Midi.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Sistema Multimídia Educacional</h1>
+        <h2>Tema: Animação como Recurso em Sistemas Multimídia</h2>
+
+        <p class="grupo">
+            Ecliton Matheus Cavalcanti Cunha – 01577282 <br>
+            Eduardo Isaias Ribeiro Santos – 01589636 <br>
+            João Pedro Gusmão de Lira Tavares – 01585507
+        </p>
+    </header>
+
+    <nav class="menu">
+        <a href="html/introducao.html">Introdução</a>
+        <a href="html/tipos.html">Tipos de Animação</a>
+        <a href="html/aplicacoes.html">Aplicações</a>
+        <a href="html/quiz.html">Quiz</a>
+        <a href="html/sobre.html">Sobre</a>
+    </nav>
+
+    <footer>
+        <p>Protótipo Multimídia — 2025</p>
+    </footer>
+
+    <!-- Botão de Som -->
+    <div id="soundButton" class="sound-off"></div>
+
+    <script>
+        let synth = null;
+        let midiData = null;
+        let isPlaying = false;
+        const btn = document.getElementById("soundButton");
+
+        // Inicializa o sintetizador
+        function initSynth() {
+            if (!synth) {
+                synth = new Tone.PolySynth(Tone.Synth, {
+                    oscillator: { type: 'triangle' },
+                    envelope: {
+                        attack: 0.005,
+                        decay: 0.1,
+                        sustain: 0.3,
+                        release: 1
+                    }
+                }).toDestination();
+                synth.volume.value = -10;
+            }
+        }
+
+        // Carrega o MIDI automaticamente
+        async function loadMIDI() {
+            try {
+                const response = await fetch('media/musica_140bpm.mid');
+                const arrayBuffer = await response.arrayBuffer();
+                midiData = new Midi(arrayBuffer);
+                initSynth();
+                setupMIDI();
+                console.log('MIDI carregado com sucesso!');
+            } catch (error) {
+                console.error('Erro ao carregar MIDI:', error);
+                alert('Erro ao carregar o arquivo MIDI. Verifique o caminho: media/musica_140bpm.mid');
+            }
+        }
+
+        // Configura o MIDI no Transport
+        function setupMIDI() {
+            // Limpa eventos anteriores
+            Tone.Transport.cancel();
+            
+            // Calcula duração total
+            const duration = Math.max(...midiData.tracks.flatMap(t => 
+                t.notes.map(n => n.time + n.duration)
+            ));
+
+            // Agenda todas as notas no Transport
+            midiData.tracks.forEach(track => {
+                track.notes.forEach(note => {
+                    Tone.Transport.schedule((time) => {
+                        synth.triggerAttackRelease(
+                            note.name,
+                            note.duration,
+                            time,
+                            note.velocity
+                        );
+                    }, note.time);
+                });
+            });
+
+            // Configura loop
+            Tone.Transport.loop = true;
+            Tone.Transport.loopEnd = duration;
+        }
+
+        // Toca o MIDI
+        async function playMIDI() {
+            if (!midiData || isPlaying) return;
+
+            await Tone.start();
+            isPlaying = true;
+            btn.classList.remove('sound-off');
+            btn.classList.add('sound-on');
+
+            Tone.Transport.start();
+        }
+
+        // Para o MIDI
+        function stopMIDI() {
+            isPlaying = false;
+            
+            Tone.Transport.pause();
+            
+            if (synth) {
+                synth.releaseAll();
+            }
+            
+            btn.classList.remove('sound-on');
+            btn.classList.add('sound-off');
+        }
+
+        // Controle do botão
+        btn.addEventListener('click', () => {
+            if (!midiData) {
+                alert('Aguarde, o arquivo MIDI está carregando...');
+                return;
+            }
+
+            if (isPlaying) {
+                stopMIDI();
+            } else {
+                playMIDI();
+            }
+        });
+
+        // Carrega o MIDI ao iniciar
+        window.addEventListener('load', loadMIDI);
+    </script>
+
+</body>
+</html>

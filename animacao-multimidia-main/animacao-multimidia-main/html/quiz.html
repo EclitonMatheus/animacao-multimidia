@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz - Multimídia</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <div id="quiz-card">
+
+        <h1>Quiz de Animação</h1>
+
+        <div id="questionBox">
+            <p id="questionText"></p>
+        </div>
+
+        <ul id="optionsList"></ul>
+
+        <button id="nextBtn">Responder</button>
+
+        <a href="../index.html" class="back-btn">Voltar ao Menu</a>
+
+    </div>
+
+    <div id="resultScreen" class="hidden">
+        <h2>Resultado</h2>
+        <p id="scoreText"></p>
+        <button onclick="startQuiz()">Tentar novamente</button>
+        <a href="../index.html" class="back-btn">Voltar ao Menu</a>
+    </div>
+
+    <script src="../js/quiz.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Introdução</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- CSS adicional para o botão de microfone -->
+    <style>
+        #micButton {
+            width: 54px;
+            height: 54px;
+            position: fixed;
+            bottom: 22px;
+            right: 90px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: #1e2a78;
+            cursor: pointer;
+            opacity: 0.9;
+            border-radius: 14px;
+            border: 1px solid #d4d7e4;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+            transition: 0.25s ease;
+        }
+
+        #micButton:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+        #micIcon {
+            width: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Introdução à Animação</h1>
+
+    <p>A animação é um dos elementos mais importantes em sistemas multimídia, pois permite transmitir movimento, emoção e dinamismo de forma envolvente.</p>
+
+    <p>Veja abaixo um exemplo animado de um dos 12 Princípios da animação: o Squash e Stretch.</p>
+
+    <p>O Squash and Stretch é um princípio fundamental da animação que ajuda a criar a sensação de peso,
+    flexibilidade e vida nos personagens ou objetos.<br>
+    Ele consiste em deformar a forma original por meio da compressão (<strong>squash</strong>) e do
+    alongamento (<strong>stretch</strong>), tornando o movimento mais natural e expressivo.</p>
+
+    <video src="../media/Squash_and_Skretch.mp4" width="400" autoplay loop muted></video>
+
+    <br>
+    <a class="voltar" href="../index.html">⬅ Voltar ao menu</a>
+
+    <!-- 🔊 Botão de microfone -->
+    <div id="micButton">
+        <img id="micIcon" src="../media/microfone.svg">
+    </div>
+
+    <!-- 🎧 ÁUDIO QUE SERÁ REPRODUZIDO -->
+    <audio id="narracao" src="../media/Áudio1.mp3"></audio>
+
+    <!-- Script para controlar o áudio -->
+    <script>
+        const micBtn = document.getElementById("micButton");
+        const micIcon = document.getElementById("micIcon");
+        const audio = document.getElementById("narracao");
+
+        micBtn.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                micIcon.src = "../media/microfone.svg"; // ícone quando tocando
+            } else {
+                audio.pause();
+                micIcon.src = "../media/microfone.svg"; // ícone quando parado
+            }
+        });
+
+        audio.addEventListener("ended", () => {
+            micIcon.src = "../media/microfone.svg";
+        });
+    </script>
+</body>
+</html>

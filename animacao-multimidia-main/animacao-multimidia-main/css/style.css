@@ -1,0 +1,295 @@
+/* RESET E BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    background: #f1f3f7;
+    color: #2b2b2b;
+    padding: 24px;
+    line-height: 1.7;
+}
+
+/* TÍTULOS */
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1e2a78;
+    text-align: center;
+    letter-spacing: -0.5px;
+    margin-bottom: 18px;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #2f3655;
+    text-align: center;
+    margin: 20px 0 14px;
+}
+
+/* TEXTO */
+p, ul, li {
+    font-size: 17px;
+    margin-bottom: 12px;
+    color: #444;
+}
+
+ul {
+    padding-left: 26px;
+}
+
+/* SUBTEXTO */
+.grupo {
+    text-align: center;
+    font-size: 15px;
+    margin-top: 10px;
+    color: #666;
+}
+
+/* HEADER */
+header {
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 14px;
+    margin-bottom: 40px;
+    text-align: center;
+    border: 1px solid #e1e4ee;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+
+/* MENU DE OPÇÕES */
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.menu a {
+    width: 260px;
+    text-align: center;
+    padding: 14px 22px;
+    font-size: 17px;
+    background: #1e2a78;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.25s ease;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+}
+
+.menu a:hover {
+    background: #151d5a;
+    transform: translateY(-2px);
+}
+
+/* MÍDIAS */
+img, video, audio {
+    display: block;
+    margin: 26px auto;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+}
+
+/* BOTÃO VOLTAR */
+.voltar {
+    background: #2f3655;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 40px;
+    font-size: 16px;
+    transition: 0.25s ease;
+}
+
+.voltar:hover {
+    background: #1e2238;
+    transform: translateX(-3px);
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 34px;
+    border-radius: 14px;
+    border: 1px solid #e2e3ea;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    animation: fadeIn 0.45s ease;
+}
+
+/* QUIZ – CARDS */
+#quiz-card, #resultScreen {
+    max-width: 780px;
+    margin: 32px auto;
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 14px;
+    border: 1px solid #e4e5ef;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.07);
+}
+
+/* PERGUNTA */
+#questionText {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2f3655;
+    margin-bottom: 20px;
+}
+
+/* LISTA DE OPÇÕES */
+#optionsList {
+    list-style: none;
+    padding: 0;
+}
+
+#optionsList li {
+    background: #f5f6fa;
+    padding: 14px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    border: 1px solid #d8dbeb;
+    transition: 0.25s ease;
+}
+
+#optionsList li:hover {
+    background: #eceef7;
+}
+
+#optionsList li.selected {
+    background: #1e2a78;
+    color: white;
+    border-color: #141b58;
+}
+
+/* BOTÕES GERAIS */
+button {
+    width: 100%;
+    padding: 14px;
+    font-size: 17px;
+    border: none;
+    background: #1e2a78;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 22px;
+    transition: 0.25s;
+    font-weight: 600;
+}
+
+button:hover {
+    background: #171f5b;
+    transform: translateY(-2px);
+}
+
+/* BOTÃO VOLTAR (PÁGINA QUIZ) */
+.back-btn {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    background: #2f3655;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.back-btn:hover {
+    background: #1e2238;
+}
+
+/* BOTÃO DE SOM */
+#soundButton {
+    width: 48px;
+    height: 48px;
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    background-size: cover;
+    cursor: pointer;
+    opacity: 0.85;
+    border-radius: 10px;
+    border: 1px solid #d4d7e4;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    transition: 0.25s ease;
+}
+
+#soundButton:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* ÍCONES DO BOTÃO DE SOM */
+.sound-on {
+    background-image: url("../media/sound_on.png");
+}
+
+.sound-off {
+    background-image: url("../media/sound_off.png");
+}
+
+/* OCULTO */
+.hidden {
+    display: none;
+}
+
+/* RODAPÉ */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 15px;
+    color: #777;
+}
+
+/* ANIMAÇÃO */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* BOTÃO DE SOM COM PLAY E PAUSE — ESTILO PROFISSIONAL */
+#soundButton {
+    width: 54px;
+    height: 54px;
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px; /* ícone maior */
+    font-weight: 700;
+    color: #1e2a78;
+    cursor: pointer;
+    opacity: 0.9;
+    border-radius: 14px;
+    border: 1px solid #d4d7e4;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    transition: 0.25s ease;
+}
+
+#soundButton:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+}
+
+/* ÍCONES COM MELHOR ESTÉTICA */
+.sound-on::before {
+    content: "⯈"; /* Play mais bonito */
+}
+
+.sound-off::before {
+    content: "❚❚"; /* Pause elegante */
+}
+

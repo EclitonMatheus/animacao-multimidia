@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Tipos de Animação</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- CSS do botão de áudio -->
+    <style>
+        #micButton {
+            width: 54px;
+            height: 54px;
+            position: fixed;
+            bottom: 22px;
+            right: 90px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0.9;
+            border-radius: 14px;
+            border: 1px solid #d4d7e4;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+            transition: 0.25s ease;
+        }
+
+        #micButton:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+        #micIcon {
+            width: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tipos de Animação</h1>
+
+    <ul>
+        <li>Stop Motion</li>
+        <p>Técnica em que objetos reais são fotografados quadro a quadro, sendo ligeiramente movidos entre cada captura. Quando as imagens são reproduzidas em sequência, criam a ilusão de movimento. É muito usada com massinha, bonecos articulados e cenários físicos.</p>
+
+        <li>Animação 2D</li>
+        <p>Forma de animação criada em duas dimensões, trabalhando altura e largura. Os personagens e cenários são desenhados quadro a quadro ou digitalmente em softwares. É o estilo clássico de desenhos animados, como os feitos em papel ou em programas como Adobe Animate.</p>
+
+        <li>Animação 3D</li>
+        <p>Técnica de animação que utiliza modelos tridimensionais criados em computador. Os personagens e objetos têm profundidade, iluminação e texturas realistas. É amplamente usada em filmes, jogos e efeitos visuais modernos.</p>
+
+        <li>Rotoscopia</li>
+        <p>Processo em que o animador desenha por cima de filmagens reais, quadro a quadro, para criar movimentos mais naturais. A técnica combina captura de movimentos reais com arte animada, gerando um visual único e fluido.</p>
+
+        <li>Sprite Animation</li>
+        <p>Método de animação muito usado em jogos 2D. Consiste em exibir rapidamente diferentes imagens (sprites) de um personagem ou objeto para simular movimento, como correr, pular ou atacar. Cada sprite representa uma pose específica.</p>
+    </ul>
+
+    <h2>Imagem Vetorial (SVG)</h2>
+    <img src="../media/imagens/vetorial.svg" width="200">
+
+    <a class="voltar" href="../index.html">⬅ Voltar ao menu</a>
+
+    <!-- Botão de áudio -->
+    <div id="micButton">
+        <img id="micIcon" src="../media/microfone.svg">
+    </div>
+
+    <!-- Áudio desta página -->
+    <audio id="narTipos" src="../media/Áudio2.mp3"></audio>
+
+    <!-- Script Play/Pause -->
+    <script>
+        const micBtn = document.getElementById("micButton");
+        const micIcon = document.getElementById("micIcon");
+        const audio = document.getElementById("narTipos");
+
+        micBtn.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                micIcon.src = "../media/microfone.svg"; // ícone tocando
+            } else {
+                audio.pause();
+                micIcon.src = "../media/microfone.svg"; // ícone parado
+            }
+        });
+
+        audio.addEventListener("ended", () => {
+            micIcon.src = "../media/microfone.svg";
+        });
+    </script>
+
+</body>
+</html>
