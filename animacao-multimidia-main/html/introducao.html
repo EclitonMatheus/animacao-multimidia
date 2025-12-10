@@ -2,13 +2,14 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introdução</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <h1>Introdução à Animação</h1>
 
-    <p> A animação é um dos elementos mais importantes em sistemas multimídia, pois permite transmitir movimento, emoção e dinamismo de forma envolvente. </p>
+    <p>A animação é um dos elementos mais importantes em sistemas multimídia, pois permite transmitir movimento, emoção e dinamismo de forma envolvente.</p>
 
     <p>Veja abaixo um exemplo animado de um dos 12 Princípios da animação: o Squash e Stretch.</p>
 
@@ -21,5 +22,42 @@
 
     <br>
     <a class="voltar" href="../index.html">⬅ Voltar ao menu</a>
+
+    <!-- 🎤 BOTÃO DE MICROFONE PARA NARRAÇÃO -->
+    <div id="micButton">
+        <img id="micIcon" src="../media/microfone.svg" alt="Narração">
+    </div>
+
+    <!-- 🎧 ÁUDIO DE NARRAÇÃO -->
+    <audio id="narracao" src="../media/Áudio1.mp3"></audio>
+
+    <!-- 📜 SCRIPT DE CONTROLE DA NARRAÇÃO -->
+    <script>
+        const micBtn = document.getElementById("micButton");
+        const micIcon = document.getElementById("micIcon");
+        const audio = document.getElementById("narracao");
+
+        // Controle de clique no botão
+        micBtn.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                micBtn.classList.add("playing");
+            } else {
+                audio.pause();
+                audio.currentTime = 0; // Volta ao início
+                micBtn.classList.remove("playing");
+            }
+        });
+
+        // Quando o áudio terminar
+        audio.addEventListener("ended", () => {
+            micBtn.classList.remove("playing");
+        });
+
+        // Se houver erro ao carregar
+        audio.addEventListener("error", () => {
+            console.error("Erro ao carregar áudio: ../media/Audio1.mp3");
+        });
+    </script>
 </body>
 </html>

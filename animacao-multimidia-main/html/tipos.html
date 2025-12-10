@@ -2,24 +2,125 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tipos de Animação</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
+<script>
+    document.querySelectorAll(".zoomable").forEach(img => {
+        img.addEventListener("click", () => {
+            img.classList.toggle("zoomed");
+        });
+    });
+</script>
+
 <body>
-    <h1>Tipos de Animação</h1>
+    <div class="container">
+        <h1>Tipos de Animação</h1>
+        <p style="text-align: center; margin-bottom: 40px;">Conheça as principais técnicas de animação utilizadas no cinema, games e produção audiovisual.</p>
 
-    <ul>
-        <li>Stop Motion</li>
-        <li>Animação 2D</li>
-        <li>Animação 3D</li>
-        <li>Rotoscopia</li>
-        <li>Sprite Animation</li>
-    </ul>
+        <!-- Stop Motion -->
+        <section class="animation-type">
+            <h2>Stop Motion</h2>
+            <img class="zoomable" src="../media/stopmotion.jpg" alt="Stop Motion Animation" width="300px">
+            <p>
+                Stop Motion é uma técnica de animação que utiliza a captura fotográfica quadro a quadro de objetos físicos. 
+                Cada fotografia registra uma pequena alteração na posição dos objetos, e quando reproduzidas em sequência, 
+                criam a ilusão de movimento. Famosos filmes como "Coraline" e "A Fuga das Galinhas" foram produzidos 
+                com essa técnica artesanal e encantadora.
+            </p>
+        </section>
 
-    <h2>Imagem Vetorial (SVG)</h2>
-    <img src="../media/imagens/vetorial.svg" width="200">
+        <!-- Animação 2D -->
+        <section class="animation-type">
+            <h2>Animação 2D</h2>
+            <img class="zoomable" src="../media/2DAnimation.jpeg" alt="Animação 2D" width="300px">
+            <p>
+                A animação 2D tradicional, também conhecida como animação cel, envolve desenhar cada quadro manualmente. 
+                Pode ser feita com papel e lápis ou digitalmente usando softwares como Adobe Animate e Toon Boom. 
+                Clássicos da Disney como "O Rei Leão" e séries modernas como "Adventure Time" são exemplos icônicos 
+                desta técnica atemporal que continua popular até hoje.
+            </p>
+        </section>
 
+        <!-- Animação 3D -->
+        <section class="animation-type">
+            <h2>Animação 3D</h2>
+            <img class="zoomable" src="../media/3d.png" alt="Animação 3D" width="300px">
+            <p>
+                A animação 3D utiliza modelos tridimensionais criados em computador, permitindo movimento em todos os eixos 
+                e realismo impressionante. Softwares como Blender, Maya e 3ds Max são amplamente usados. Esta técnica domina 
+                a indústria do cinema de animação atual, com estúdios como Pixar e DreamWorks criando obras-primas como 
+                "Toy Story", "Shrek" e "Elementos".
+            </p>
+        </section>
 
-    <a class="voltar" href="../index.html">⬅ Voltar ao menu</a>
+        <!-- Vetorial vs Bitmap (lado a lado) -->
+        <section class="animation-type" style="text-align: center; margin-top: 50px;">
+
+            <p>Veja abaixo dois desenhos que você poderia explorar sua criatividade e animá-los.</p>
+            <h2>Imagem Vetorial (SVG) vs Imagem Matricial (Bitmap)</h2>
+
+            <div style="display: flex; justify-content: center; gap: 40px; align-items: center; margin-top: 20px;">
+
+                <!-- SVG -->
+                <div>
+                    <h3>Vetorial (SVG)</h3>
+                    <img class="zoomable" src="../media/cachorrosvg.svg" width="300" alt="Exemplo de Imagem Vetorial">
+                </div>
+
+                <!-- BITMAP -->
+                <div>
+                    <h3>Bitmap</h3>
+                    <img class="zoomable bitmap-pixel" src="../media/cachorrobit.bmp" width="300" alt="Exemplo de Imagem Bitmap">
+                </div>
+
+            </div>
+
+            <p>
+                A imagem vetorial pode ser ampliada infinitamente sem perder qualidade. Já o bitmap, ao aumentar, revela os pixels.
+            </p>
+        </section>
+
+        <a class="voltar" href="../index.html">⬅ Voltar ao menu</a>
+    </div>
+
+    <!-- 🎤 BOTÃO DE MICROFONE PARA NARRAÇÃO -->
+    <div id="micButton">
+        <img id="micIcon" src="../media/microfone.svg" alt="Narração">
+    </div>
+
+    <!-- 🎧 ÁUDIO DE NARRAÇÃO -->
+    <audio id="narracao" src="../media/Áudio2.mp3"></audio>
+
+    <!-- 📜 SCRIPT DE CONTROLE DA NARRAÇÃO -->
+    <script>
+        const micBtn = document.getElementById("micButton");
+        const micIcon = document.getElementById("micIcon");
+        const audio = document.getElementById("narracao");
+
+        // Controle de clique no botão
+        micBtn.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                micBtn.classList.add("playing");
+            } else {
+                audio.pause();
+                audio.currentTime = 0; // Volta ao início
+                micBtn.classList.remove("playing");
+            }
+        });
+
+        // Quando o áudio terminar
+        audio.addEventListener("ended", () => {
+            micBtn.classList.remove("playing");
+        });
+
+        // Se houver erro ao carregar
+        audio.addEventListener("error", () => {
+            console.error("Erro ao carregar áudio: ../media/Audio2.mp3");
+        });
+    </script>
 </body>
 </html>

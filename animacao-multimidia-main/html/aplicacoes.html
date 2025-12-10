@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplicações</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -17,15 +18,61 @@
     <p>A seguir, alguns dos principais campos de aplicação da animação:</p>
 
     <ul>
-        <li> <strong> Educação: </strong> Facilita a compreensão de conteúdos por meio de recursos visuais dinâmicos. </li>
-        <li> <strong> Publicidade: </strong> Cria campanhas atraentes e memoráveis por meio de personagens e movimentos. </li>
-        <li> <strong> Cinema e Televisão: </strong> Está presente em filmes, séries, efeitos visuais e desenhos animados. </li>
-        <li> <strong> Jogos Digitais: </strong> Contribui para a criação de personagens, cenários e efeitos realistas. </li>
-        <li> <strong> Simulações: </strong> Utilizada em treinamentos, realidade virtual e demonstrações técnicas. </li>
+        <li><strong>Educação:</strong> Facilita a compreensão de conteúdos por meio de recursos visuais dinâmicos.</li>
+        <img src="../media/escolas.jpg" width="300" alt="Exemplo 1">
+
+        <li><strong>Publicidade:</strong> Cria campanhas atraentes e memoráveis por meio de personagens e movimentos.</li>
+       <img src="../media/publi.jpeg" width="300" alt="Exemplo 2">
+        
+        <li><strong>Cinema e Televisão:</strong> Está presente em filmes, séries, efeitos visuais e desenhos animados.</li>
+        <img src="../media/toystory.webp" width="300" alt="Exemplo 2">
+       
+        <li><strong>Jogos Digitais:</strong> Contribui para a criação de personagens, cenários e efeitos realistas.</li>
+        <img src="../media/thewitcher.jpeg" width="300" alt="Exemplo 2">
+        
+        <li><strong>Simulações:</strong> Utilizada em treinamentos, realidade virtual e demonstrações técnicas.</li>
+        <img src="../media/veiculos.jpeg" width="300" alt="Exemplo 3">
+   
     </ul>
 
-    <br><br>
 
     <a class="voltar" href="../index.html">⬅ Voltar ao menu</a>
+
+    <!-- 🎤 BOTÃO DE MICROFONE PARA NARRAÇÃO -->
+    <div id="micButton">
+        <img id="micIcon" src="../media/microfone.svg" alt="Narração">
+    </div>
+
+    <!-- 🎧 ÁUDIO DE NARRAÇÃO -->
+    <audio id="narracao" src="../media/Áudio3.mp3"></audio>
+
+    <!-- 📜 SCRIPT DE CONTROLE DA NARRAÇÃO -->
+    <script>
+        const micBtn = document.getElementById("micButton");
+        const micIcon = document.getElementById("micIcon");
+        const audio = document.getElementById("narracao");
+
+        // Controle de clique no botão
+        micBtn.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                micBtn.classList.add("playing");
+            } else {
+                audio.pause();
+                audio.currentTime = 0; // Volta ao início
+                micBtn.classList.remove("playing");
+            }
+        });
+
+        // Quando o áudio terminar
+        audio.addEventListener("ended", () => {
+            micBtn.classList.remove("playing");
+        });
+
+        // Se houver erro ao carregar
+        audio.addEventListener("error", () => {
+            console.error("Erro ao carregar áudio: ../media/Audio3.mp3");
+        });
+    </script>
 </body>
 </html>

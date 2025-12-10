@@ -1,295 +1,637 @@
-/* RESET E BASE */
+/* ===========================
+   RESET E BASE
+   =========================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: "Inter", "Segoe UI", Arial, sans-serif;
-    background: #f1f3f7;
-    color: #2b2b2b;
-    padding: 24px;
-    line-height: 1.7;
+:root {
+    /* Paleta de cores vibrante para multimídia/animações */
+    --primary: #6200ea;
+    --primary-dark: #4a00b4;
+    --primary-light: #7c4dff;
+    --secondary: #00bfa5;
+    --secondary-dark: #00897b;
+    --accent: #ff6f00;
+    --accent-light: #ff9800;
+    --text-primary: #1a1a1a;
+    --text-secondary: #424242;
+    --text-muted: #757575;
+    --background: #fafafa;
+    --surface: #ffffff;
+    --border: #e8e8e8;
+    --border-light: #f5f5f5;
+    --shadow-sm: 0 2px 8px rgba(98, 0, 234, 0.08);
+    --shadow-md: 0 4px 16px rgba(98, 0, 234, 0.12);
+    --shadow-lg: 0 8px 24px rgba(98, 0, 234, 0.15);
+    --gradient-primary: linear-gradient(135deg, #6200ea 0%, #00bfa5 100%);
+    --gradient-accent: linear-gradient(135deg, #ff6f00 0%, #ff9800 100%);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* TÍTULOS */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--background);
+    color: var(--text-primary);
+    padding: 24px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Estilo para body sem container - simula container */
+body:not(:has(.container)):not(:has(header)) {
+    max-width: 960px;
+    margin: 0 auto;
+    background: var(--surface);
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* ===========================
+   TIPOGRAFIA
+   =========================== */
 h1 {
-    font-size: 32px;
+    font-size: clamp(28px, 5vw, 36px);
     font-weight: 700;
-    color: #1e2a78;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-align: center;
     letter-spacing: -0.5px;
-    margin-bottom: 18px;
+    margin-bottom: 24px;
+    line-height: 1.2;
 }
 
 h2 {
-    font-size: 22px;
+    font-size: clamp(20px, 4vw, 24px);
     font-weight: 600;
-    color: #2f3655;
+    color: var(--secondary);
     text-align: center;
-    margin: 20px 0 14px;
+    margin: 40px 0 20px;
+    line-height: 1.3;
 }
 
-/* TEXTO */
+h2:first-of-type {
+    margin-top: 32px;
+}
+
 p, ul, li {
-    font-size: 17px;
-    margin-bottom: 12px;
-    color: #444;
+    font-size: 16px;
+    margin-bottom: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    text-align: justify;
+}
+
+p strong {
+    color: var(--primary);
+    font-weight: 600;
 }
 
 ul {
-    padding-left: 26px;
+    padding-left: 28px;
+    text-align: left;
 }
 
-/* SUBTEXTO */
 .grupo {
     text-align: center;
-    font-size: 15px;
-    margin-top: 10px;
-    color: #666;
+    font-size: 14px;
+    margin-top: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
 }
 
-/* HEADER */
+/* ===========================
+   HEADER
+   =========================== */
 header {
-    background: #ffffff;
-    padding: 32px;
-    border-radius: 14px;
-    margin-bottom: 40px;
+    background: var(--surface);
+    padding: 40px 32px;
+    border-radius: 16px;
+    margin-bottom: 32px;
     text-align: center;
-    border: 1px solid #e1e4ee;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
 }
 
-/* MENU DE OPÇÕES */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-primary);
+    animation: slideIn 1.5s ease-out forwards;
+}
+
+/* ===========================
+   MENU DE NAVEGAÇÃO
+   =========================== */
 .menu {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
+    max-width: 320px;
+    margin: 0 auto;
 }
 
 .menu a {
-    width: 260px;
+    width: 100%;
     text-align: center;
-    padding: 14px 22px;
-    font-size: 17px;
-    background: #1e2a78;
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    background: var(--gradient-primary);
     color: white;
-    border-radius: 10px;
+    border-radius: 12px;
     text-decoration: none;
-    transition: 0.25s ease;
-    font-weight: 500;
-    letter-spacing: 0.4px;
+    transition: var(--transition);
+    letter-spacing: 0.3px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.menu a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+    transition: var(--transition);
+}
+
+.menu a:hover::before {
+    left: 100%;
 }
 
 .menu a:hover {
-    background: #151d5a;
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
-/* MÍDIAS */
+.menu a:active {
+    transform: translateY(0);
+}
+
+/* ===========================
+   MÍDIAS
+   =========================== */
 img, video, audio {
     display: block;
-    margin: 26px auto;
+    margin: 24px auto;
     max-width: 100%;
     border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+    box-shadow: var(--shadow-md);
+    border: 2px solid transparent;
+    transition: var(--transition);
 }
 
-/* BOTÃO VOLTAR */
-.voltar {
-    background: #2f3655;
-    color: white;
-    padding: 10px 25px;
-    border-radius: 8px;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 40px;
-    font-size: 16px;
-    transition: 0.25s ease;
+img:hover, video:hover {
+    border-color: var(--primary-light);
+    transform: scale(1.02);
 }
 
-.voltar:hover {
-    background: #1e2238;
-    transform: translateX(-3px);
+/* ===========================
+   SEÇÕES DE CONTEÚDO
+   =========================== */
+.animation-type {
+    margin-bottom: 56px;
 }
 
-/* CONTAINER PRINCIPAL */
+.animation-type:last-of-type {
+    margin-bottom: 32px;
+}
+
+/* ===========================
+   CONTAINER PRINCIPAL
+   =========================== */
 .container {
-    max-width: 900px;
-    margin: auto;
-    background: #fff;
-    padding: 34px;
-    border-radius: 14px;
-    border: 1px solid #e2e3ea;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-    animation: fadeIn 0.45s ease;
+    max-width: 960px;
+    margin: 0 auto;
+    background: var(--surface);
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    animation: fadeIn 0.4s ease-out;
 }
 
-/* QUIZ – CARDS */
+/* ===========================
+   QUIZ - ESTRUTURA
+   =========================== */
 #quiz-card, #resultScreen {
-    max-width: 780px;
+    max-width: 800px;
     margin: 32px auto;
-    background: #ffffff;
-    padding: 28px;
-    border-radius: 14px;
-    border: 1px solid #e4e5ef;
-    box-shadow: 0 8px 22px rgba(0,0,0,0.07);
+    background: var(--surface);
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
 }
 
-/* PERGUNTA */
+#quiz-card::before, #resultScreen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
 #questionText {
     font-size: 20px;
     font-weight: 600;
-    color: #2f3655;
-    margin-bottom: 20px;
+    color: var(--secondary);
+    margin-bottom: 24px;
+    line-height: 1.5;
 }
 
-/* LISTA DE OPÇÕES */
+/* ===========================
+   LISTA DE OPÇÕES
+   =========================== */
 #optionsList {
     list-style: none;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 #optionsList li {
-    background: #f5f6fa;
-    padding: 14px;
-    border-radius: 8px;
-    margin-bottom: 12px;
+    background: var(--background);
+    padding: 16px 18px;
+    border-radius: 10px;
     cursor: pointer;
-    border: 1px solid #d8dbeb;
-    transition: 0.25s ease;
+    border: 2px solid var(--border-light);
+    transition: var(--transition);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+#optionsList li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: var(--gradient-primary);
+    transform: scaleY(0);
+    transition: var(--transition);
 }
 
 #optionsList li:hover {
-    background: #eceef7;
+    background: #ffffff;
+    border-color: var(--primary-light);
+    transform: translateX(6px);
+}
+
+#optionsList li:hover::before {
+    transform: scaleY(1);
 }
 
 #optionsList li.selected {
-    background: #1e2a78;
+    background: var(--gradient-primary);
     color: white;
-    border-color: #141b58;
+    border-color: var(--primary-dark);
+    transform: translateX(6px);
 }
 
-/* BOTÕES GERAIS */
+#optionsList li.selected::before {
+    transform: scaleY(1);
+    background: rgba(255,255,255,0.3);
+}
+
+/* ===========================
+   BOTÕES
+   =========================== */
 button {
     width: 100%;
-    padding: 14px;
-    font-size: 17px;
-    border: none;
-    background: #1e2a78;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 22px;
-    transition: 0.25s;
+    padding: 16px;
+    font-size: 16px;
     font-weight: 600;
+    border: none;
+    background: var(--gradient-accent);
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    letter-spacing: 0.3px;
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 button:hover {
-    background: #171f5b;
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
-/* BOTÃO VOLTAR (PÁGINA QUIZ) */
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background: #bdbdbd;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ===========================
+   BOTÃO VOLTAR
+   =========================== */
+.voltar, .back-btn {
+    display: inline-block;
+    background: var(--secondary);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.voltar:hover, .back-btn:hover {
+    background: var(--secondary-dark);
+    transform: translateX(-4px);
+    box-shadow: var(--shadow-md);
+}
+
 .back-btn {
     display: block;
     text-align: center;
-    margin-top: 20px;
-    background: #2f3655;
-    color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    text-decoration: none;
+    margin-top: 24px;
+    width: 100%;
 }
 
-.back-btn:hover {
-    background: #1e2238;
-}
-
-/* BOTÃO DE SOM */
+/* ===========================
+   BOTÃO DE SOM (MÚSICA)
+   =========================== */
 #soundButton {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     position: fixed;
-    bottom: 22px;
-    right: 22px;
-    background-size: cover;
-    cursor: pointer;
-    opacity: 0.85;
-    border-radius: 10px;
-    border: 1px solid #d4d7e4;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-    transition: 0.25s ease;
-}
-
-#soundButton:hover {
-    opacity: 1;
-    transform: translateY(-2px);
-}
-
-/* ÍCONES DO BOTÃO DE SOM */
-.sound-on {
-    background-image: url("../media/sound_on.png");
-}
-
-.sound-off {
-    background-image: url("../media/sound_off.png");
-}
-
-/* OCULTO */
-.hidden {
-    display: none;
-}
-
-/* RODAPÉ */
-footer {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 15px;
-    color: #777;
-}
-
-/* ANIMAÇÃO */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* BOTÃO DE SOM COM PLAY E PAUSE — ESTILO PROFISSIONAL */
-#soundButton {
-    width: 54px;
-    height: 54px;
-    position: fixed;
-    bottom: 22px;
-    right: 22px;
-    background: #ffffff;
+    bottom: 24px;
+    right: 24px;
+    background: var(--gradient-primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px; /* ícone maior */
-    font-weight: 700;
-    color: #1e2a78;
+    font-size: 26px;
+    color: white;
     cursor: pointer;
-    opacity: 0.9;
-    border-radius: 14px;
-    border: 1px solid #d4d7e4;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-    transition: 0.25s ease;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+    z-index: 1000;
 }
 
 #soundButton:hover {
-    opacity: 1;
-    transform: translateY(-3px);
+    transform: translateY(-4px) scale(1.08) rotate(5deg);
+    box-shadow: 0 12px 32px rgba(98, 0, 234, 0.25);
 }
 
-/* ÍCONES COM MELHOR ESTÉTICA */
+#soundButton:active {
+    transform: translateY(-1px) scale(1) rotate(0deg);
+}
+
+/* Ícones de som com emojis */
 .sound-on::before {
-    content: "⯈"; /* Play mais bonito */
+    content: "🔊";
 }
 
 .sound-off::before {
-    content: "❚❚"; /* Pause elegante */
+    content: "🔇";
 }
 
+/* ===========================
+   BOTÃO DE MICROFONE (NARRAÇÃO)
+   =========================== */
+#micButton {
+    width: 56px;
+    height: 56px;
+    position: fixed;
+    bottom: 24px;
+    right: 90px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 3px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+#micButton:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 12px 32px rgba(98, 0, 234, 0.15);
+    border-color: var(--primary-light);
+}
+
+#micButton:active {
+    transform: translateY(-1px) scale(1);
+}
+
+#micIcon {
+    width: 28px;
+    height: 28px;
+    filter: opacity(0.8);
+    transition: var(--transition);
+}
+
+#micButton:hover #micIcon {
+    filter: opacity(1);
+}
+
+/* Estado tocando */
+#micButton.playing {
+    background: var(--gradient-accent);
+    border-color: var(--accent);
+}
+
+#micButton.playing #micIcon {
+    filter: brightness(0) invert(1);
+}
+
+/* ===========================
+   UTILITÁRIOS
+   =========================== */
+.hidden {
+    display: none !important;
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+footer {
+    text-align: center;
+    margin-top: 56px;
+    padding-top: 24px;
+    font-size: 14px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-light);
+}
+
+/* ===========================
+   ANIMAÇÕES
+   =========================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        left: -100%;
+    }
+    to {
+        left: 100%;
+    }
+}
+
+/* ===========================
+   RESPONSIVIDADE
+   =========================== */
+@media (max-width: 768px) {
+    body {
+        padding: 16px;
+    }
+
+    body:not(:has(.container)):not(:has(header)) {
+        padding: 24px;
+    }
+
+    .container,
+    #quiz-card,
+    #resultScreen {
+        padding: 24px;
+    }
+
+    header {
+        padding: 28px 20px;
+    }
+
+    .menu {
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    #soundButton {
+        width: 48px;
+        height: 48px;
+        bottom: 16px;
+        right: 16px;
+    }
+
+    #micButton {
+        width: 48px;
+        height: 48px;
+        bottom: 16px;
+        right: 72px;
+    }
+
+    #micIcon {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    body:not(:has(.container)):not(:has(header)) {
+        padding: 20px;
+    }
+
+    .container,
+    #quiz-card,
+    #resultScreen {
+        padding: 20px;
+    }
+
+    #optionsList li {
+        padding: 14px 16px;
+    }
+}
+
+/* ===========================
+   MELHORIAS DE ACESSIBILIDADE
+   =========================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus visível para teclado */
+a:focus-visible,
+button:focus-visible,
+#optionsList li:focus-visible {
+    outline: 3px solid var(--primary-light);
+    outline-offset: 2px;
+}
+
+/* Bitmap mostrando pixels */
+.bitmap-pixel {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
